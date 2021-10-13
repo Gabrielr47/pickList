@@ -11,6 +11,13 @@
             option += '<option data-id=' + val.id + '>' + val.text + '</option>';
          });
          this.find('.pickData').append(option);
+
+         var result = '';
+         $.each(opts.result, function (key, val) {
+            result += '<option data-id=' + val.id + '>' + val.text + '</option>';
+         });
+         
+         this.find('.pickListResult').append(result);
       };
       this.controll = function () {
          var pickThis = this;
@@ -52,16 +59,22 @@
       };
 
       this.init = function () {
+
+         opts.add = opts.btns.btnAdd ? opts.btns.btnAdd : opts.add;
+         opts.addAll = opts.btns.btnAddAll ? opts.btns.btnAddAll : opts.addAll;
+         opts.remove = opts.btns.btnRemove ? opts.btns.btnRemove : opts.remove;
+         opts.removeAll = opts.btns.btnRemoveAll ? opts.btns.btnRemoveAll : opts.removeAll;
+
          var pickListHtml =
                  "<div class='row'>" +
                  "  <div class='col-sm-5'>" +
                  "	 <select class='form-control pickListSelect pickData' multiple></select>" +
                  " </div>" +
                  " <div class='col-sm-2 pickListButtons'>" +
-                 "	<button  class='pAdd btn btn-primary btn-sm'>" + opts.add + "</button>" +
-                 "      <button  class='pAddAll btn btn-primary btn-sm'>" + opts.addAll + "</button>" +
-                 "	<button  class='pRemove btn btn-primary btn-sm'>" + opts.remove + "</button>" +
-                 "	<button  class='pRemoveAll btn btn-primary btn-sm'>" + opts.removeAll + "</button>" +
+                 "	<button  class='pAdd col-md-10 btn  btn-primary btn-sm '>" +  opts.add + "</button>" +
+                 "   <button  class='pAddAll col-md-10 btn btn-primary btn-sm'>" + opts.addAll + "</button>" +
+                 "	<button  class='pRemove col-md-10 btn btn-primary btn-sm'>" + opts.remove + "</button>" +
+                 "	<button  class='pRemoveAll col-md-10 btn btn-primary btn-sm'>" + opts.removeAll + "</button>" +
                  " </div>" +
                  " <div class='col-sm-5'>" +
                  "    <select class='form-control pickListSelect pickListResult' multiple></select>" +
@@ -77,13 +90,14 @@
       this.init();
       return this;
    };
-
+   var opts = $.fn.pickList;
    $.fn.pickList.defaults = {
-      add: 'Add',
-      addAll: 'Add All',
-      remove: 'Remove',
-      removeAll: 'Remove All'
+      add:'Agregar' ,
+      addAll: 'Agregar todo',
+      remove: 'Remover',
+      removeAll: 'Remover todo'
    };
+  
 
 
 }(jQuery));
