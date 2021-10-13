@@ -1,62 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>PickList for jQuery</title>
-      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"  rel="stylesheet">
-      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"  rel="stylesheet">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-      <link href="pickList.css"  rel="stylesheet">
-   </head>
-   <body>
 
-      <br>
-      <div class="container">
-         <div class="panel panel-default">
-            <div class="panel-heading">
-               <h3 class="panel-title">PickList Demo</h3>
-            </div>
-            <div class="panel-body">
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>PickList for jQuery</title>
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+      integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+   <link href="pickList.css" rel="stylesheet">
+</head>
 
-               <div id="pickList"></div>
+<body>
 
-               <br><br>
-               <button class="btn btn-primary" id="getSelected">Get Selected</button>
-            </div>
+   <br>
+   <div class="container">
+      <div class="panel panel-default">
+         <div class="panel-heading">
+            <h3 class="panel-title">PickList Demo</h3>
+         </div>
+         <div class="panel-body">
+
+            <div id="pickList"></div>
+
+            <br><br>
+            <button class="btn btn-primary" id="getSelected">Get Selected</button>
          </div>
       </div>
+   </div>
 
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-      <script src="pickList.js"></script>
-      <script>
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+      integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
+      crossorigin="anonymous"></script>
+   <script src="pickList.js"></script>
+   <script>
 
-         var val = {
-            01: {id: 01, text: 'Isis'},
-            02: {id: 02, text: 'Sophia'},
-            03: {id: 03, text: 'Alice'},
-            04: {id: 04, text: 'Isabella'},
-            05: {id: 05, text: 'Manuela'},
-            06: {id: 06, text: 'Laura'},
-            07: {id: 07, text: 'Luiza'},
-            08: {id: 08, text: 'Valentina'},
-            09: {id: 09, text: 'Giovanna'},
-            10: {id: 10, text: 'Maria Eduarda'},
-            11: {id: 11, text: 'Helena'},
-            12: {id: 12, text: 'Beatriz'},
-            13: {id: 13, text: 'Maria Luiza'},
-            14: {id: 14, text: 'Lara'},
-            15: {id: 15, text: 'Julia'}
-         };
+      var val = [
+         { id: 01, text: 'Isis' },
+         { id: 02, text: 'Sophia' },
+         { id: 03, text: 'Alice' },
+         { id: 04, text: 'Isabella' },
+         { id: 05, text: 'Manuela' },
+         { id: 06, text: 'Laura' },
+         { id: 07, text: 'Luiza' },
+         { id: 08, text: 'Valentina' },
+         { id: 09, text: 'Giovanna' },
+         { id: 10, text: 'Maria Eduarda' },
+         { id: 11, text: 'Helena' },
 
-         var pick = $("#pickList").pickList({data: val});
+      ];
 
-         $("#getSelected").click(function () {
-            console.log(pick.getValues());
-         });
+      var pick = $("#pickList").pickList({
+         //Se cargan todo los datos que se podran seleccionar
+         data: val,
+         //Se cargan todo los datos que ya te tienen por default
+         result: [
+            { id: 12, text: 'Beatriz' },
+            { id: 13, text: 'Maria Luiza' },
+            { id: 14, text: 'Lara' },
+            { id: 15, text: 'Julia' }
+         ],
+         //Puedes personalizar el componete y sus botones
+         btns:{
+            btnAdd : '<i class="fas fa-chevron-right"></i>',
+            btnAddAll:'',
+            btnRemove:'',
+            btnRemoveAll:''
+         }
+      });
 
-      </script>
-   </body>
+
+      $("#getSelected").click(function () {
+         console.log(pick.getValues());
+      });
+
+   </script>
+</body>
+
 </html>
